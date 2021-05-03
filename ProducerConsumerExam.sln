@@ -3,13 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProducerConsumerExam.Producer", "ProducerConsumerExam.Producer\ProducerConsumerExam.Producer.csproj", "{BAF45BA8-EBBC-482F-937A-6C7653375CB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProducerConsumerExam.Producer", "ProducerConsumerExam.Producer\ProducerConsumerExam.Producer.csproj", "{BAF45BA8-EBBC-482F-937A-6C7653375CB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProducerConsumerExam.Data", "ProducerConsumerExam.Data\ProducerConsumerExam.Data.csproj", "{16D9F6B3-59E2-40C6-B5CE-3A2A41105CAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProducerConsumerExam.Data", "ProducerConsumerExam.Data\ProducerConsumerExam.Data.csproj", "{16D9F6B3-59E2-40C6-B5CE-3A2A41105CAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProducerConsumerExam.Consumer", "ProducerConsumerExam.Consumer\ProducerConsumerExam.Consumer.csproj", "{E7174D05-119E-466B-AB94-1EFF5546694D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProducerConsumerExam.Consumer", "ProducerConsumerExam.Consumer\ProducerConsumerExam.Consumer.csproj", "{E7174D05-119E-466B-AB94-1EFF5546694D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProducerConsumerExam.Common", "ProducerConsumerExam.Common\ProducerConsumerExam.Common.csproj", "{6DBCA569-B3C3-4E78-8DFC-EE9946D7E6D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProducerConsumerExam.Common", "ProducerConsumerExam.Common\ProducerConsumerExam.Common.csproj", "{6DBCA569-B3C3-4E78-8DFC-EE9946D7E6D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{966F5DF7-D8BE-4EDE-81B1-D4C631F2148D}"
+	ProjectSection(SolutionItems) = preProject
+		ReadMe.md = ReadMe.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
