@@ -1,6 +1,6 @@
 # ProducerConsumerExam
 
-It is a consumer-producer realization. Producer  save in a db tasks for the consumers, and each Consumer tries to take a new pending task and print the TaskText to the screen.
+It is a consumer-producer realization. Producer  save in a db tasks for the consumers, and each Consumer tries to take a new pending task and print the TaskText to the screen.See description in description.png
 
 ## How to run the project in Visual Studio
 Choose Solution -> Properties -> Multiple startup projects
