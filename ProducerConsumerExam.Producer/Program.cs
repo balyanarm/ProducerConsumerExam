@@ -58,10 +58,10 @@ namespace ProducerConsumerExam.Producer
 
         static System.Threading.Tasks.Task StartProcessingAsync()
         {
-            return System.Threading.Tasks.Task.Run(StartProccesing);
+            return System.Threading.Tasks.Task.Run(StartProcessing);
         }
 
-        static void StartProccesing()
+        static void StartProcessing()
         {
             using (var uw = new UnitOfWork(new Data.TaskContext()))
             {
@@ -69,7 +69,7 @@ namespace ProducerConsumerExam.Producer
                 {
                     uw.Tasks.Add(new Task()
                     {
-                        ConsumerID = null,
+                        ConsumerId = null,
                         CreationTime = DateTime.UtcNow,
                         Status = Data.Enums.TaskStatus.Pending,
                         TaskText = "Task Text for Consumer"
@@ -98,8 +98,8 @@ namespace ProducerConsumerExam.Producer
         { 
             string message =
                 @"x - to stop processing
-q - to quit
-c - to continue processing";
+                q - to quit
+                c - to continue processing";
             Console.WriteLine("\n" + message);
 
             return Console.ReadKey().KeyChar.ToString();

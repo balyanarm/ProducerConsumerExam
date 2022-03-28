@@ -31,7 +31,7 @@ namespace ProducerConsumerExam.Consumer
             {
                 t.ModificationTime = DateTime.UtcNow;
                 t.Status = Data.Enums.TaskStatus.InProgress;
-                t.ConsumerID = customerId;
+                t.ConsumerId = customerId;
             }
             _unitOfWork.Tasks.UpdateAll(tasks);
             _unitOfWork.Complete();
@@ -39,7 +39,7 @@ namespace ProducerConsumerExam.Consumer
             return tasks.Select(t => t.ToDto());
         }
 
-        public void CompleatConsumerTask(int taskId) 
+        private void CompleteConsumerTask(int taskId) 
         {
             var task = _unitOfWork.Tasks.GetById(taskId);
             task.Status = TaskStatus.Done;
@@ -47,7 +47,7 @@ namespace ProducerConsumerExam.Consumer
             _unitOfWork.Complete();
         }
 
-        public void ConsumerTaskFailed(int taskId)
+        private void ConsumerTaskFailed(int taskId)
         {
             var task = _unitOfWork.Tasks.GetById(taskId);
             task.Status = TaskStatus.Error;
@@ -55,10 +55,9 @@ namespace ProducerConsumerExam.Consumer
             _unitOfWork.Complete();
         }
 
-        public void StartConsumerWork(int consumerId, int taskCount)
+        public void StartConsumerWork(int consumerId, IEnumerable<TaskDto> tasks)
         {
-            var tasks = GetPendingTasksForConsumer(consumerId, taskCount);
-            _logger.Info($"Consumer {consumerId} gots {taskCount} tasks.");
+            _logger.Info($"Consumer {consumerId} gots {tasks.Count()} tasks.");
 
             foreach(var t in tasks)
             {
@@ -67,7 +66,7 @@ namespace ProducerConsumerExam.Consumer
                 var status = GetRandomStatus();
                 switch (status) {
                     case TaskStatus.Done:
-                        CompleatConsumerTask(t.Id);
+                        CompleteConsumerTask(t.Id);
                         _logger.Info($"Consumer {consumerId} compleates the task {t.Id}.");
                         break;
                     case TaskStatus.Error:
@@ -83,9 +82,7 @@ namespace ProducerConsumerExam.Consumer
         static TaskStatus GetRandomStatus()
         {
             var number = rd.Next(1, 100);
-            if (number < 80)
-                return TaskStatus.Done;
-            return TaskStatus.Error;
+            return number < 80 ? TaskStatus.Done : TaskStatus.Error;
         }
     }
 }

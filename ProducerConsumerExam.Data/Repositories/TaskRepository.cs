@@ -56,10 +56,10 @@ namespace ProducerConsumerExam.Data.Repositories
         public IEnumerable<Task> GetLastestTasks(List<int?> ConsumerIDs)
         {
             var selectedConsumers = TaskContext.Tasks
-                .Where(t => ConsumerIDs.Contains(t.ConsumerID))
+                .Where(t => ConsumerIDs.Contains(t.ConsumerId))
                 .ToList();
 
-            return selectedConsumers.GroupBy(s => s.ConsumerID)
+            return selectedConsumers.GroupBy(s => s.ConsumerId)
                 .Select(s => s.OrderByDescending(x => x.CreationTime).FirstOrDefault());
         }
 

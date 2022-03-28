@@ -19,7 +19,7 @@ namespace ProducerConsumerExam.Consumer
                 Thread.Sleep(1000);
             }
 
-            StartProccesingAsync(consumersCount, taskBulkSizes)
+            StartProcessingAsync(consumersCount, taskBulkSizes)
                 .GetAwaiter()
                 .GetResult();
 
@@ -39,28 +39,25 @@ namespace ProducerConsumerExam.Consumer
             return value;
         }
 
-        static async Task StartProccesingAsync(int consumersCount, int tasksCount)
+        static async Task StartProcessingAsync(int consumersCount, int tasksCount)
         {
             ILogger logger = new ConsoleLogger();
             var anyPendingTask = true;
             while (anyPendingTask)
             {
-                Task[] tasks = new Task[consumersCount];
+                var tasks = new Task[consumersCount];
 
-                for (int i = 1; i <= consumersCount; i++)
+                for (var i = 1; i <= consumersCount; i++)
                 {
-                    var consumerID = i;
-                    tasks[consumerID-1] = Task.Run(() =>
+                    var consumerId = i;
+                    tasks[consumerId-1] = Task.Run(() =>
                     {
                         using (var uw = new UnitOfWork(new Data.TaskContext()))
                         {
                             ConsumerService consumerService = new ConsumerService(uw, logger);
-                            var tasks = consumerService.GetPendingTasksForConsumer(consumerID, tasksCount);
-                            foreach (var t in tasks)
-                            {
-                                consumerService.StartConsumerWork(consumerID, tasksCount);
-                                Thread.Sleep(100);
-                            }
+                            var taskDtos = consumerService.GetPendingTasksForConsumer(consumerId, tasksCount);
+                            consumerService.StartConsumerWork(consumerId, taskDtos);
+                            Thread.Sleep(100);
                         }
                     });
                 }

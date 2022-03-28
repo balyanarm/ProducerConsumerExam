@@ -20,7 +20,7 @@ namespace ProducerConsumerExam.Consumer
                 ModificationTime = entity.ModificationTime,
                 TaskText = entity.TaskText,
                 Status = entity.Status,
-                ConsumerID = entity.ConsumerID,
+                ConsumerId = entity.ConsumerId,
             };
         }
     }

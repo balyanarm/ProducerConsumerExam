@@ -10,6 +10,6 @@ namespace ProducerConsumerExam.Consumer
         public DateTime ModificationTime { get; set; }
         public string TaskText { get; set; }
         public TaskStatus Status { get; set; }
-        public int? ConsumerID { get; set; }
+        public int? ConsumerId { get; set; }
     }
 }
